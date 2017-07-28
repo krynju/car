@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Screen.h"
 #include "Car.h"
-#include <cstdio>
 #include <thread>
 
 
@@ -18,13 +17,22 @@ int main() {
 //    a.display();
 //    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    Screen a(10,10);
-    Car c(3,3,1,1);
-    a.fill('t');
-    c.update_position();
+    Screen a(30, 10);
+    Car c(3, 3, 1, 1);
+    std::chrono::time_point<std::chrono::system_clock> time_a, time_b;
+    time_a = std::chrono::system_clock::now();
     c.draw(a);
+    for (int i = 0; i < 100; i++) {
+        time_b = std::chrono::system_clock::now();
+        c.update_position(std::chrono::system_clock::to_time_t(time_b) - std::chrono::system_clock::to_time_t(time_a));
+        c.draw(a);
+        a.display();
+        time_a = time_b;
 
-    a.display();
+
+    }
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
 
     return 0;
 }

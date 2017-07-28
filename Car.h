@@ -6,6 +6,7 @@
 #define CAR_CAR_H
 
 
+#include <ctime>
 #include "Object_movable.h"
 #include "Screen.h"
 
@@ -19,7 +20,7 @@ private:
     double y_old;
 public:
     Car(double,double,double,double);
-    void update_position() override;
+    void update_position(std::time_t time_elapsed) override;
     void draw(Screen &S) override;
 };
 

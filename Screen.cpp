@@ -3,6 +3,7 @@
 #include <iostream>
 
 void Screen::display() {
+    system("cls");
     for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
         for_each(table_element.begin(), table_element.end(), [](char &pix) {
             std::cout << pix;
@@ -23,7 +24,10 @@ void Screen::fill(const char c) {
 }
 
 void Screen::fill_pixel(unsigned int x, unsigned int y,char c) {
+    if( y > table.size() || y < 0 || x > table[0].size() || x < 0)
+        throw("out_of_range");
     table[y][x] = c;
+
 }
 
 void Screen::empty_pixel(unsigned int x, unsigned int y) {

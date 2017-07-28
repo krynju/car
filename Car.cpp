@@ -6,8 +6,8 @@ Car::Car(double xx, double yy, double xx_vel, double yy_vel) :
         x_velocity(xx_vel),
         y_velocity(yy_vel) {}
 
-void Car::update_position() {
-    double time_elapsed = 1; /*temp variable*/
+void Car::update_position(std::time_t time_elapsed) {
+    //double time_elapsed = 1; /*temp variable*/
     x_old = x;
     y_old = y;
     x += x_velocity * time_elapsed;
@@ -16,9 +16,11 @@ void Car::update_position() {
 }
 
 void Car::draw(Screen &S) {
+    if((unsigned int)(x_old) == (unsigned int)(x) && (unsigned int)(y_old) == (unsigned int)(y))
+        return;
+
     S.empty_pixel((unsigned int) (x_old), (unsigned int) (y_old));
     S.fill_pixel((unsigned int) (x), (unsigned int) (y), 'C');
-
 
 }
 
