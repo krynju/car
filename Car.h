@@ -12,12 +12,13 @@
 
 class Car : public Object_movable{
 private:
+    unsigned int x_on_screen;
+    unsigned int y_on_screen;
     double x;
     double y;
     double x_velocity;
     double y_velocity;
-    double x_old;
-    double y_old;
+
 public:
     Car(double,double,double,double);
     void update_position(std::time_t time_elapsed) override;

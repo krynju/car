@@ -1,26 +1,31 @@
+#include <cmath>
 #include "Car.h"
 
 Car::Car(double xx, double yy, double xx_vel, double yy_vel) :
-        x(xx), x_old(xx),
-        y(yy), y_old(yy),
+        x(xx), x_on_screen((unsigned int) std::round(xx)),
+        y(yy), y_on_screen((unsigned int) std::round(yy)),
         x_velocity(xx_vel),
         y_velocity(yy_vel) {}
 
 void Car::update_position(std::time_t time_elapsed) {
-    //double time_elapsed = 1; /*temp variable*/
-    x_old = x;
-    y_old = y;
     x += x_velocity * time_elapsed;
     y += y_velocity * time_elapsed;
-
 }
 
 void Car::draw(Screen &S) {
-    if((unsigned int)(x_old) == (unsigned int)(x) && (unsigned int)(y_old) == (unsigned int)(y))
-        return;
+    auto x_t = (unsigned int) std::round(x);
+    auto y_t = (unsigned int) std::round(y);
+    if ( x_t == x_on_screen && y_t == y_on_screen){
+        if( S.view_pixel(x_t,y_t) != 'C'){
+            S.fill_pixel(x_t,y_t,'C');
 
-    S.empty_pixel((unsigned int) (x_old), (unsigned int) (y_old));
-    S.fill_pixel((unsigned int) (x), (unsigned int) (y), 'C');
+        }
+        return;
+    }
+    S.empty_pixel(x_on_screen, y_on_screen);
+    S.fill_pixel(x_t, y_t, 'C');
+    x_on_screen = x_t;
+    y_on_screen = y_t;
 
 }
 

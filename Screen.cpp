@@ -15,21 +15,25 @@ void Screen::display() {
 Screen::Screen(unsigned int xx, unsigned int yy) :
 //xx - horizontal resolution, yy - vertical
 //vector vectorów rozmiar yy, wypełnienie wektorami o rozmiarze xx
-        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))) {}
+        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))){}
 
 void Screen::fill(const char c) {
     for_each(table.begin(), table.end(), [&](std::vector<char> &table_element) {
-        for_each(table_element.begin(), table_element.end(), [&](char &pix) {pix = c;});
+        for_each(table_element.begin(), table_element.end(), [&](char &pix) { pix = c; });
     });
 }
 
-void Screen::fill_pixel(unsigned int x, unsigned int y,char c) {
-    if( y > table.size() || y < 0 || x > table[0].size() || x < 0)
-        throw("out_of_range");
+void Screen::fill_pixel(unsigned int x, unsigned int y, char c) {
+    if (y > table.size() - 1 || y < 0 || x > table[0].size() - 1 || x < 0)
+        throw ("out_of_range");
     table[y][x] = c;
 
 }
 
 void Screen::empty_pixel(unsigned int x, unsigned int y) {
     table[y][x] = ' ';
+}
+
+char Screen::view_pixel(int x, int y) {
+    return table[y][x];
 }

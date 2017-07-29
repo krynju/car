@@ -10,6 +10,7 @@
 
 class Screen {
 private:
+
     std::vector<std::vector<char>> table;
 public:
     Screen(unsigned int, unsigned int);
@@ -17,6 +18,7 @@ public:
     void fill(char);
     void fill_pixel(unsigned int,unsigned int,char);
     void empty_pixel(unsigned int,unsigned int);
+    char view_pixel(int,int);
 };
 
 
