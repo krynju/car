@@ -7,6 +7,7 @@
 
 
 #include <ctime>
+#include <chrono>
 #include "Object_movable.h"
 #include "Screen.h"
 
@@ -21,8 +22,10 @@ private:
 
 public:
     Car(double,double,double,double);
-    void update_position(std::time_t time_elapsed) override;
+    void update_position(std::chrono::duration<double> time_elapsed) override;
     void draw(Screen &S) override;
+    double getx();
+    double gety();
 };
 
 

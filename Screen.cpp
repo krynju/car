@@ -3,6 +3,7 @@
 #include <iostream>
 
 void Screen::display() {
+    if(!screen_edited_flag) return;
     system("cls");
     for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
         for_each(table_element.begin(), table_element.end(), [](char &pix) {
@@ -10,12 +11,15 @@ void Screen::display() {
         });
         std::cout << std::endl;
     });
+    screen_edited_flag = false;
 }
 
 Screen::Screen(unsigned int xx, unsigned int yy) :
 //xx - horizontal resolution, yy - vertical
 //vector vectorów rozmiar yy, wypełnienie wektorami o rozmiarze xx
-        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))){}
+        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))){
+    screen_edited_flag = true;
+}
 
 void Screen::fill(const char c) {
     for_each(table.begin(), table.end(), [&](std::vector<char> &table_element) {
