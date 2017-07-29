@@ -1,8 +1,8 @@
 #include "test.h"
 
 int main() {
-    test1_standard_w_prawo();
 
+    test2_movable_object_container_algorytmy();
 
     return 0;
 }

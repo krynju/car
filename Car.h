@@ -22,8 +22,8 @@ private:
 
 public:
     Car(double,double,double,double);
-    void update_position(std::chrono::duration<double> time_elapsed) override;
-    void draw(Screen &S) override;
+    void update_position(std::chrono::duration<double> time_elapsed);
+    void draw(Screen &S);
     double getx();
     double gety();
 };

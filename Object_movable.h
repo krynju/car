@@ -10,7 +10,7 @@
 
 class Object_movable{
 public:
-    virtual void update_position(std::chrono::duration<double>) = 0;
-    virtual void draw(Screen&) = 0;
+    virtual void update_position(std::chrono::duration<double>)=0;
+    virtual void draw(Screen&)=0;
 };
 #endif //CAR_OBJECT_MOVABLE_H
