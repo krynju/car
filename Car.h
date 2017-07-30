@@ -1,7 +1,3 @@
-//
-// Created by gulin on 27/07/2017.
-//
-
 #ifndef CAR_CAR_H
 #define CAR_CAR_H
 

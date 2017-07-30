@@ -2,7 +2,6 @@
 
 int main() {
 
-    test2_movable_object_container_algorytmy();
-
+    standard_loop_test();
     return 0;
 }

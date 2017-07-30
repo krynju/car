@@ -1,9 +1,16 @@
 #include "Screen.h"
 #include <algorithm>
 #include <iostream>
+#include <chrono>
 
-void Screen::display() {
-    if(!screen_edited_flag) return;
+#define time_point_variable std::chrono::time_point<std::chrono::system_clock>
+
+void Screen::display(time_point_variable time_now) {
+    auto time_a = (time_now - last_time_displayed);
+    if (time_a < std::chrono::milliseconds(1000/60))
+        return;
+    if (!screen_edited_flag)
+        return;
     system("cls");
     for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
         for_each(table_element.begin(), table_element.end(), [](char &pix) {
@@ -12,12 +19,29 @@ void Screen::display() {
         std::cout << std::endl;
     });
     screen_edited_flag = false;
+    last_time_displayed = time_now;
 }
+
+void Screen::display() {
+    if (!screen_edited_flag)
+        return;
+    system("cls");
+    for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
+        for_each(table_element.begin(), table_element.end(), [](char &pix) {
+            std::cout << pix;
+        });
+        std::cout << std::endl;
+    });
+    screen_edited_flag = false;
+    last_time_displayed = std::chrono::system_clock::now();
+}
+
 
 Screen::Screen(unsigned int xx, unsigned int yy) :
 //xx - horizontal resolution, yy - vertical
 //vector vectorów rozmiar yy, wypełnienie wektorami o rozmiarze xx
-        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))){
+        table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))),
+        last_time_displayed(std::chrono::system_clock::now()) {
     screen_edited_flag = true;
 }
 

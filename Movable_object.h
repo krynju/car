@@ -12,5 +12,7 @@ class Movable_object{
 public:
     virtual void update_position(std::chrono::duration<double>)=0;
     virtual void draw(Screen&)=0;
+    virtual double getx()=0;
+    virtual double gety()=0;
 };
 #endif //CAR_OBJECT_MOVABLE_H
