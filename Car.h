@@ -8,10 +8,10 @@
 
 #include <ctime>
 #include <chrono>
-#include "Object_movable.h"
+#include "Movable_object.h"
 #include "Screen.h"
 
-class Car : public Object_movable{
+class Car : public Movable_object{
 private:
     unsigned int x_on_screen;
     unsigned int y_on_screen;
@@ -22,8 +22,8 @@ private:
 
 public:
     Car(double,double,double,double);
-    void update_position(std::chrono::duration<double> time_elapsed);
-    void draw(Screen &S);
+    void update_position(std::chrono::duration<double> time_elapsed) override;
+    void draw(Screen &S) override;
     double getx();
     double gety();
 };

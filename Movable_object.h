@@ -8,7 +8,7 @@
 #include <chrono>
 #include "Screen.h"
 
-class Object_movable{
+class Movable_object{
 public:
     virtual void update_position(std::chrono::duration<double>)=0;
     virtual void draw(Screen&)=0;
