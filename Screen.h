@@ -15,13 +15,13 @@ private:
     std::chrono::time_point<std::chrono::system_clock> last_time_displayed;
 public:
 
-    Screen(unsigned int, unsigned int);
+    Screen(int, int);
     void display(std::chrono::time_point<std::chrono::system_clock> time_now);
     void display();
     void fill(char);
 
-    void fill_pixel(unsigned int,unsigned int,char);
-    void empty_pixel(unsigned int,unsigned int);
+    void fill_pixel(int,int,char);
+    void empty_pixel(int,int);
     char view_pixel(int,int);
 
 

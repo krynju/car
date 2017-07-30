@@ -41,7 +41,6 @@ void standard_loop_test() {
         cont.draw(S);                                   //draw the objects to the screen
         S.display(std::chrono::system_clock::now());    //display the screen
         time_a = time_b;                                //swap the timestamp
-
         if(!cont.check_boundaries(x_size,y_size))
             break;
 

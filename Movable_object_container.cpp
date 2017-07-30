@@ -29,7 +29,7 @@ std::vector<Movable_object *>::iterator Movable_object_container::end() {
     return container.end();
 }
 
-bool Movable_object_container::check_boundaries(unsigned int x_size, unsigned int y_size) {
+bool Movable_object_container::check_boundaries(int x_size, int y_size) {
     /*lambda expression, checks if every object in the container is withing boundaries*/
 
     return container.end() == std::find_if(container.begin(), container.end(),

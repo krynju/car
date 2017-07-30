@@ -12,15 +12,14 @@ private:
     double y;
     double x_velocity;          //velocity
     double y_velocity;
-    unsigned int x_on_screen;   //rounded to int position
-    unsigned int y_on_screen;
-
+    int x_on_screen;   //rounded to int position
+    int y_on_screen;
 public:
     Car(double,double,double,double);
     void update_position(std::chrono::duration<double> time_elapsed) override;
     void draw(Screen &S) override;
-    double getx();
-    double gety();
+    double getx() override;
+    double gety() override;
 };
 
 

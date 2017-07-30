@@ -37,7 +37,7 @@ void Screen::display() {
 }
 
 
-Screen::Screen(unsigned int xx, unsigned int yy) :
+Screen::Screen(int xx, int yy) :
 //xx - horizontal resolution, yy - vertical
 //vector vectorów rozmiar yy, wypełnienie wektorami o rozmiarze xx
         table(std::vector<std::vector<char>>(yy, std::vector<char>(xx))),
@@ -51,14 +51,14 @@ void Screen::fill(const char c) {
     });
 }
 
-void Screen::fill_pixel(unsigned int x, unsigned int y, char c) {
+void Screen::fill_pixel(int x, int y, char c) {
     if (y > table.size() - 1 || y < 0 || x > table[0].size() - 1 || x < 0)
         throw ("out_of_range");
     table[y][x] = c;
 
 }
 
-void Screen::empty_pixel(unsigned int x, unsigned int y) {
+void Screen::empty_pixel(int x, int y) {
     table[y][x] = ' ';
 }
 
