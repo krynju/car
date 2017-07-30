@@ -5,7 +5,6 @@
 #ifndef CAR_CAR_H
 #define CAR_CAR_H
 
-
 #include <ctime>
 #include <chrono>
 #include "Movable_object.h"
@@ -13,12 +12,12 @@
 
 class Car : public Movable_object{
 private:
-    unsigned int x_on_screen;
-    unsigned int y_on_screen;
-    double x;
+    double x;                   //exact position
     double y;
-    double x_velocity;
+    double x_velocity;          //velocity
     double y_velocity;
+    unsigned int x_on_screen;   //rounded to int position
+    unsigned int y_on_screen;
 
 public:
     Car(double,double,double,double);
