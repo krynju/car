@@ -12,6 +12,7 @@ public:
     void update_position(std::chrono::duration<double>);    //update objects positions
     void draw(Screen &);                                     //draw objects to the screen
     bool check_boundaries(int,int);
+    bool check_collsion();
     Movable_object &operator[](int i);
 
     std::vector<Movable_object *>::iterator begin();

@@ -42,6 +42,14 @@ double Car::gety() {
     return y;
 }
 
+bool Car::check_if_in_range(double xx, double yy ,double range2) {
+    return range + range2 > sqrt(pow(x-xx,2) + pow(y-yy,2));
+}
+
+double Car::get_range() {
+    return range;
+}
+
 
 
 
