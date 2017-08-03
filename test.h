@@ -17,19 +17,19 @@ void standard_loop_test() {
     unsigned int y_size = 10;
 
     Movable_object_container cont;  //initialise object container
-    Car c1(0, 0, 30, 0);             //initialise objects
+//    Car c1(0, 0, 30, 0);             //initialise objects
 //    Car c2(0, 1, 3, 0);
 //    Car c3(29,2,-2,0);
 //    Car c4(29,3,-4,0);
-//    Car c5(0,4,5,0);
-//    Car c6(29,4,-5,0);
+    Car c5(0, 4, 5, 0);
+    Car c6(29, 4, -5, 0);
 
-    cont.push_back(c1);            //add objects to the container
+//    cont.push_back(c1);            //add objects to the container
 //    cont.push_back(c2);
 //    cont.push_back(c3);
 //    cont.push_back(c4);
-//    cont.push_back(c5);
-//    cont.push_back(c6);
+    cont.push_back(c5);
+    cont.push_back(c6);
 
     Screen S(x_size, y_size);        //create a screen object
 
@@ -41,16 +41,16 @@ void standard_loop_test() {
     time_a = std::chrono::system_clock::now();          //save starting timestamp
     ups_count_start = std::chrono::system_clock::now(); //starting timestamp for ups
 
-    for (;;++updates) {
+    for (;; ++updates) {
         time_b = std::chrono::system_clock::now();      //save reference timestamp
         cont.update_position(time_b - time_a);          //update position of objects contained in the container
-        if(cont.check_boundaries(x_size,y_size))
+        if (cont.check_boundaries(x_size, y_size))
             break;
-        if(cont.check_collsion())
+        if (cont.collision_radar())
             break;
 
         cont.draw(S);                                   //draw the objects to the screen
-        if(S.display(std::chrono::system_clock::now())) //display the screen
+        if (S.display(std::chrono::system_clock::now())) //display the screen
             ++frames;
         time_a = time_b;                                //swap the timestamp
 
@@ -60,9 +60,9 @@ void standard_loop_test() {
     /*ups info and time elapsed print*/
     ups_count_end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = ups_count_end - ups_count_start;
-    std::cout << "time elapsed: "       << elapsed_seconds.count() << std::endl;
-    std::cout << "updates per second: " << updates / elapsed_seconds.count()<< std::endl;
-    std::cout << "average frames per second: " << frames / elapsed_seconds.count()<< std::endl;
+    std::cout << "time elapsed: " << elapsed_seconds.count() << std::endl;
+    std::cout << "updates per second: " << updates / elapsed_seconds.count() << std::endl;
+    std::cout << "average frames per second: " << frames / elapsed_seconds.count() << std::endl;
     wait_seconds(5);
 }
 
@@ -93,9 +93,9 @@ void standard_loop() {
         S.display();                                    //display the screen
         time_a = time_b;                                //swap the timestamp
 
-        if (c1.getx() > x_size - 1 || c1.gety() > y_size - 1)//break conditions (screen borders)
+        if (c1.get_x() > x_size - 1 || c1.get_y() > y_size - 1)//break conditions (screen borders)
             break;
-        if (c2.getx() > x_size - 1 || c2.gety() > y_size - 1)
+        if (c2.get_x() > x_size - 1 || c2.get_y() > y_size - 1)
             break;
     }
 
@@ -124,7 +124,7 @@ void test1_standard_w_prawo() {
         a.display();
         time_a = time_b;
 
-        if (c.getx() > 25)
+        if (c.get_x() > 25)
             break;
 
     }
@@ -160,9 +160,9 @@ void test2_movable_object_container_algorytmy() {
         S.display();
         time_a = time_b;
 
-        if (c1.getx() > 25)
+        if (c1.get_x() > 25)
             break;
-        if (c2.getx() > 25)
+        if (c2.get_x() > 25)
             break;
 
     }

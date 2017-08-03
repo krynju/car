@@ -33,19 +33,32 @@ bool Movable_object_container::check_boundaries(int x_size, int y_size) {
     /*lambda expression, checks if every object in the container is withing boundaries*/
     /*returns true if any object reached the boundaries*/
     return !(container.end() == std::find_if(container.begin(), container.end(),
-                                           [&](Movable_object *Obj) {
-                                               return Obj->getx() > x_size - 1 || Obj->getx() < 0 ||
-                                                      Obj->gety() > y_size - 1 || Obj->gety() < 0;
-                                           }));
+                                             [&](Movable_object *Obj) {
+                                                 return Obj->get_x() > x_size - 1 || Obj->get_x() < 0 ||
+                                                        Obj->get_y() > y_size - 1 || Obj->get_y() < 0;
+                                             }));
 }
 
-bool Movable_object_container::check_collsion() {
+bool Movable_object_container::collision_radar() {
     /*first loop after every element*/
     /*second starting from actual+1 iterator of the main loop*/
-    for(auto i = container.begin();i != container.end(); i++){
-        for( auto p =i+1; p != container.end(); p++){
-            if( (*i)->check_if_in_range((*p)->getx(),(*p)->gety(),(*p)->get_range()))
-                return true;
+    enum {
+        no_collision, possible_collision, collision
+    };
+
+    for (auto main_loop = container.begin(); main_loop != container.end(); main_loop++) {
+        for (auto secondary_loop = main_loop + 1; secondary_loop != container.end(); secondary_loop++) {
+            switch ((*main_loop)->check_if_in_range(**secondary_loop)) {
+                case no_collision:
+                    continue;
+                case possible_collision:
+                    //check if real collision
+                    return true;
+                case collision:
+                    //for now return true
+                    //todo a collision resolving system
+                    return true;
+            }
         }
     }
     return false;
