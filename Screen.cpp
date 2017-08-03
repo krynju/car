@@ -5,12 +5,12 @@
 
 #define time_point_variable std::chrono::time_point<std::chrono::system_clock>
 
-void Screen::display(time_point_variable time_now) {
+bool Screen::display(time_point_variable time_now) {
     auto time_a = (time_now - last_time_displayed);
     if (time_a < std::chrono::milliseconds(1000/60))
-        return;
+        return false;
     if (!screen_edited_flag)
-        return;
+        return false;
     system("cls");
     for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
         for_each(table_element.begin(), table_element.end(), [](char &pix) {
@@ -20,6 +20,7 @@ void Screen::display(time_point_variable time_now) {
     });
     screen_edited_flag = false;
     last_time_displayed = time_now;
+    return true;
 }
 
 void Screen::display() {

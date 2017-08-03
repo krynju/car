@@ -17,19 +17,19 @@ void standard_loop_test() {
     unsigned int y_size = 10;
 
     Movable_object_container cont;  //initialise object container
-//    Car c1(0, 0, 1, 0);             //initialise objects
+    Car c1(0, 0, 30, 0);             //initialise objects
 //    Car c2(0, 1, 3, 0);
 //    Car c3(29,2,-2,0);
 //    Car c4(29,3,-4,0);
-    Car c5(0,4,5,0);
-    Car c6(29,4,-5,0);
+//    Car c5(0,4,5,0);
+//    Car c6(29,4,-5,0);
 
-//    cont.push_back(c1);            //add objects to the container
+    cont.push_back(c1);            //add objects to the container
 //    cont.push_back(c2);
 //    cont.push_back(c3);
 //    cont.push_back(c4);
-    cont.push_back(c5);
-    cont.push_back(c6);
+//    cont.push_back(c5);
+//    cont.push_back(c6);
 
     Screen S(x_size, y_size);        //create a screen object
 
@@ -37,19 +37,23 @@ void standard_loop_test() {
     time_point_variable ups_count_start, ups_count_end; //updates per second variables
 
     int updates = 0;                                    //updates counter
+    int frames = 0;
     time_a = std::chrono::system_clock::now();          //save starting timestamp
     ups_count_start = std::chrono::system_clock::now(); //starting timestamp for ups
 
     for (;;++updates) {
         time_b = std::chrono::system_clock::now();      //save reference timestamp
         cont.update_position(time_b - time_a);          //update position of objects contained in the container
-        cont.draw(S);                                   //draw the objects to the screen
-        S.display(std::chrono::system_clock::now());    //display the screen
-        time_a = time_b;                                //swap the timestamp
         if(cont.check_boundaries(x_size,y_size))
             break;
         if(cont.check_collsion())
             break;
+
+        cont.draw(S);                                   //draw the objects to the screen
+        if(S.display(std::chrono::system_clock::now())) //display the screen
+            ++frames;
+        time_a = time_b;                                //swap the timestamp
+
 
     }
 
@@ -57,7 +61,8 @@ void standard_loop_test() {
     ups_count_end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = ups_count_end - ups_count_start;
     std::cout << "time elapsed: "       << elapsed_seconds.count() << std::endl;
-    std::cout << "updates per second: " << updates / elapsed_seconds.count();
+    std::cout << "updates per second: " << updates / elapsed_seconds.count()<< std::endl;
+    std::cout << "average frames per second: " << frames / elapsed_seconds.count()<< std::endl;
     wait_seconds(5);
 }
 

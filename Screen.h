@@ -16,7 +16,7 @@ private:
 public:
 
     Screen(int, int);
-    void display(std::chrono::time_point<std::chrono::system_clock> time_now);
+    bool display(std::chrono::time_point<std::chrono::system_clock> time_now);
     void display();
     void fill(char);
 
