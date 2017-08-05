@@ -51,14 +51,12 @@ void Movable_object::update_position(std::chrono::duration<double> time_elapsed)
 
 
 void Movable_object::resolve_collision(Movable_object &Obj) {
-    if (std::abs(this->x - Obj.x) > std::abs(this->y - Obj.y)) {
-        set_x_velocity(-get_x_velocity());
-        Obj.set_x_velocity(-Obj.get_x_velocity()); }
-    else {
-        set_y_velocity(-get_y_velocity());
-        Obj.set_y_velocity(-Obj.get_y_velocity());
-    }
-
+    double xvec = Obj.get_x() - this->get_x();
+    double yvec = Obj.get_y() - this->get_y();
+    double a = std::atan2(yvec,xvec);
+    double xv = this->get_x_velocity();
+    double yv = -this->get_y_velocity();
+    double b = std::atan2(yv,xv);
 
 }
 

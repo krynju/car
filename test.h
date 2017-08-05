@@ -17,19 +17,19 @@ void standard_loop_test() {
     unsigned int y_size = 10;
 
     Movable_object_container cont;  //initialise object container
-    Car c1(0, 0, 9, 3);             //initialise objects
-    Car c2(29, 9, -9, -3);
-    Car c3(29,2,-2,0);
-    Car c4(29,3,-4,0);
-    Car c5(0, 4, 5, 0);
-    Car c6(29, 4, -5, 0);
+    Car c1(0, 0, 3, 1);             //initialise objects
+    Car c2(8, 2, 0, 0);
+//    Car c3(29,2,-2,0);
+//    Car c4(29,3,-4,0);
+//    Car c5(0, 4, 5, 0);
+//    Car c6(29, 4, -5, 0);
 
     cont.push_back(c1);            //add objects to the container
     cont.push_back(c2);
-    cont.push_back(c3);
-    cont.push_back(c4);
-    cont.push_back(c5);
-    cont.push_back(c6);
+//    cont.push_back(c3);
+//    cont.push_back(c4);
+//    cont.push_back(c5);
+//    cont.push_back(c6);
 
     Screen S(x_size, y_size);        //create a screen object
 
@@ -45,10 +45,7 @@ void standard_loop_test() {
         time_b = std::chrono::system_clock::now();      //save reference timestamp
         cont.update_position(time_b - time_a);          //update position of objects contained in the container
         cont.check_boundaries(x_size, y_size);
-
         cont.collision_radar();
-
-
         cont.draw(S);                                   //draw the objects to the screen
         if (S.display(std::chrono::system_clock::now())) //display the screen
             ++frames;

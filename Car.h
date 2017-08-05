@@ -14,7 +14,6 @@ public:
 
     std::vector<std::pair<double, double>> collision_points() override;
     std::vector<std::pair<double, double>> check_collision(std::vector<std::pair<double, double>> Vec) override;
-//    void resolve_collision(Movable_object &) override;
 
 };
 
