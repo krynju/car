@@ -26,6 +26,10 @@ public:
 
     double get_y();
 
+    double set_x(double);
+
+    double set_y(double);
+
     double get_critical_range();
 
     double get_minimal_range();

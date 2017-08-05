@@ -11,6 +11,8 @@
 
 class Screen {
 private:
+    int x_size;
+    int y_size;
     std::vector<std::vector<char>> table;
     std::chrono::time_point<std::chrono::system_clock> last_time_displayed;
 public:

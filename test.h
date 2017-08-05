@@ -17,19 +17,19 @@ void standard_loop_test() {
     unsigned int y_size = 10;
 
     Movable_object_container cont;  //initialise object container
-    Car c1(0, 0, 3, 1);             //initialise objects
-    Car c2(8, 2, 0, 0);
-//    Car c3(29,2,-2,0);
-//    Car c4(29,3,-4,0);
-//    Car c5(0, 4, 5, 0);
-//    Car c6(29, 4, -5, 0);
+    Car c1(1, 0, 5, 3, 'a');             //initialise objects
+    Car c2(14, 2, -5, 0, 'b');
+    Car c3(29, 2, -5, 0, 'c');
+    Car c4(29, 3, -4, 0, 'd');
+    Car c5(0, 4, 3, 0, 'e');
+    Car c6(29, 4, -5, 0, 'f');
 
     cont.push_back(c1);            //add objects to the container
     cont.push_back(c2);
-//    cont.push_back(c3);
-//    cont.push_back(c4);
-//    cont.push_back(c5);
-//    cont.push_back(c6);
+    cont.push_back(c3);
+    cont.push_back(c4);
+    cont.push_back(c5);
+    cont.push_back(c6);
 
     Screen S(x_size, y_size);        //create a screen object
 
@@ -51,7 +51,9 @@ void standard_loop_test() {
             ++frames;
         time_a = time_b;                                //swap the timestamp
 
-
+        ups_count_end = std::chrono::system_clock::now();
+        if (ups_count_end - ups_count_start > std::chrono::seconds(30))
+            break;
     }
 
     /*ups info and time elapsed print*/
@@ -71,8 +73,8 @@ void standard_loop() {
     unsigned int y_size = 10;
 
     Movable_object_container cont;  //initialise object container
-    Car c1(0, 0, 1, 0);             //initialise objects
-    Car c2(0, 1, 1, 0);
+    Car c1(0, 0, 1, 0, 'c');             //initialise objects
+    Car c2(0, 1, 1, 0, 'c');
     cont.push_back(c1);            //add objects to the container
     cont.push_back(c2);
 
@@ -108,7 +110,7 @@ void standard_loop() {
 
 void test1_standard_w_prawo() {
     Screen a(30, 10);
-    Car c(0, 0, 5, 0);
+    Car c(0, 0, 5, 0, 'c');
 
     std::chrono::time_point<std::chrono::system_clock> time_a, time_b;
     std::chrono::time_point<std::chrono::system_clock> ups_count_start, ups_count_end;
@@ -139,8 +141,8 @@ void test1_standard_w_prawo() {
 
 void test2_movable_object_container_algorytmy() {
     Movable_object_container cont;
-    Car c1(0, 0, 1, 0);
-    Car c2(0, 1, 2, 0);
+    Car c1(0, 0, 1, 0, 'c');
+    Car c2(0, 1, 2, 0, 'c');
     cont.push_back(c1);
     cont.push_back(c2);
 

@@ -51,13 +51,52 @@ void Movable_object::update_position(std::chrono::duration<double> time_elapsed)
 
 
 void Movable_object::resolve_collision(Movable_object &Obj) {
-    double xvec = Obj.get_x() - this->get_x();
-    double yvec = Obj.get_y() - this->get_y();
-    double a = std::atan2(yvec,xvec);
-    double xv = this->get_x_velocity();
-    double yv = -this->get_y_velocity();
-    double b = std::atan2(yv,xv);
+    double omega = atan2(Obj.get_y() - this->get_y(), Obj.get_x() - this->get_y());
+    double teta_1 = atan2(this->get_y_velocity(), this->get_x_velocity());
+    double teta_2 = atan2(Obj.get_y_velocity(), Obj.get_x_velocity());
 
+    double v1 = sqrt(pow(this->get_x_velocity(), 2) + pow(this->get_y_velocity(), 2));
+    double v2 = sqrt(pow(Obj.get_x_velocity(), 2) + pow(Obj.get_y_velocity(), 2));
+
+    double v1xr = v1 * cos(teta_1 - omega);
+    double v1yr = v1 * sin(teta_1 - omega);
+    double v2xr = v2 * cos(teta_2 - omega);
+    double v2yr = v2 * sin(teta_2 - omega);
+
+    this->set_x_velocity(v2xr * cos(omega) + v1yr * cos(omega + M_PI / 2));
+    this->set_y_velocity(v2xr * sin(omega) + v1yr * sin(omega + M_PI / 2));
+    Obj.set_x_velocity(v1xr * cos(omega) + v2yr * cos(omega + M_PI / 2));
+    Obj.set_y_velocity(v1xr * sin(omega) + v2yr * sin(omega + M_PI / 2));
+
+    /*IN CASE I START SUPPORTING MASS*/
+//    double mass1 = 1;
+//    double mass2 = 1;
+//
+//    double omega = atan2(Obj.get_y() - this->get_y(), Obj.get_x() - this->get_y());
+//
+//    double teta_1= atan2(this->get_y_velocity(),this->get_x_velocity());
+//    double teta_2= atan2(Obj.get_y_velocity(),Obj.get_x_velocity());
+//
+//    double v1 = sqrt(pow(this->get_x_velocity(),2)+pow(this->get_y_velocity(),2));
+//    double v2 = sqrt(pow(Obj.get_x_velocity(),2)+pow(Obj.get_y_velocity(),2));
+//
+//    double v1xr = v1*cos(teta_1-omega);
+//    double v1yr = v1*sin(teta_1-omega);
+//    double v2xr = v2*cos(teta_2-omega);
+//    double v2yr = v2*sin(teta_2-omega);
+//
+//    double v1fxr = (v1xr*(mass1-mass2) + 2*mass2*v2xr)/(mass1+mass2);
+//    double v2fxr = (v2xr*(mass2-mass1) + 2*mass1*v1xr)/(mass1+mass2);
+//
+//    double v1fx = v1fxr*cos(omega)+v1yr*cos(omega+M_PI/2);
+//    double v1fy = v1fxr*sin(omega)+v1yr*sin(omega+M_PI/2);
+//    double v2fx = v2fxr*cos(omega)+v2yr*cos(omega+M_PI/2);
+//    double v2fy = v2fxr*sin(omega)+v2yr*sin(omega+M_PI/2);
+//
+//    this->set_x_velocity(v1fx);
+//    this->set_y_velocity(v1fy);
+//    Obj.set_x_velocity(v2fx);
+//    Obj.set_y_velocity(v2fy);
 }
 
 double Movable_object::get_x_velocity() {
@@ -74,6 +113,15 @@ void Movable_object::set_x_velocity(double d) {
 
 void Movable_object::set_y_velocity(double d) {
     y_velocity = d;
+}
+
+
+double Movable_object::set_x(double d) {
+    x = d;
+}
+
+double Movable_object::set_y(double d) {
+    y = d;
 }
 
 

@@ -8,7 +8,10 @@
 
 class Car : public Movable_object {
 public:
-    Car(double, double, double, double);
+    char sign;
+
+    Car(double, double, double, double, char);
+
 
     void draw(Screen &S) override;
 
