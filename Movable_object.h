@@ -17,6 +17,11 @@ protected:
 public:
     Movable_object(double x, double y, double x_vel, double y_vel, double min_range, double crit_range);
 
+    double get_x_velocity();
+    double get_y_velocity();
+    void set_x_velocity(double);
+    void set_y_velocity(double);
+
     double get_x();
 
     double get_y();
@@ -27,9 +32,12 @@ public:
 
     void update_position(std::chrono::duration<double>);
 
-    int check_if_in_range(Movable_object &Obj);
+    int check_range(Movable_object &Obj);
 
     virtual void draw(Screen &)=0;
+    virtual std::vector<std::pair<double, double>> collision_points()=0;
+    virtual std::vector<std::pair<double, double>> check_collision(std::vector<std::pair<double, double>>)=0;
+    void resolve_collision(Movable_object &);
 };
 
 #endif //CAR_OBJECT_MOVABLE_H

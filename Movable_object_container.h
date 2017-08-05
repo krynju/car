@@ -11,7 +11,7 @@ public:
     void push_back(Movable_object &);                        //add object to the container
     void update_position(std::chrono::duration<double>);    //update objects positions
     void draw(Screen &);                                     //draw objects to the screen
-    bool check_boundaries(int,int);
+    bool check_boundaries(int, int);
     bool collision_radar();
     Movable_object &operator[](int i);
 
