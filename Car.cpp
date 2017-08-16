@@ -30,11 +30,12 @@ void Car::draw(Screen &S) {
 
 
 std::vector<std::pair<double, double>> Car::collision_points() {
-    std::vector<std::pair<double, double>> vec;
-    vec.emplace_back(std::make_pair(x - 0.5, y + 0.5));
-    vec.emplace_back(std::make_pair(x - 0.5, y - 0.5));
-    vec.emplace_back(std::make_pair(x + 0.5, y + 0.5));
-    vec.emplace_back(std::make_pair(x + 0.5, y - 0.5));
+    std::vector<std::pair<double, double>> vec{std::make_pair(x - 0.5, y + 0.5), std::make_pair(x - 0.5, y - 0.5),
+                                               std::make_pair(x + 0.5, y + 0.5), std::make_pair(x + 0.5, y - 0.5)};
+//    vec.emplace_back(std::make_pair(x - 0.5, y + 0.5));
+//    vec.emplace_back(std::make_pair(x - 0.5, y - 0.5));
+//    vec.emplace_back(std::make_pair(x + 0.5, y + 0.5));
+//    vec.emplace_back(std::make_pair(x + 0.5, y - 0.5));
     return vec;
 }
 

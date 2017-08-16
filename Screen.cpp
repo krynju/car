@@ -7,10 +7,10 @@
 
 bool Screen::display(time_point_variable time_now) {
     auto time_a = (time_now - last_time_displayed);
-    if (time_a < std::chrono::milliseconds(1000 / 10))
+    if (time_a < std::chrono::milliseconds(1000 / 20))
         return false;
-//    if (!screen_edited_flag)
-//        return false;
+    if (!screen_edited_flag)
+        return false;
     system("cls");
     for_each(table.begin(), table.end(), [](std::vector<char> &table_element) {
         for_each(table_element.begin(), table_element.end(), [](char &pix) {

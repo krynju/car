@@ -18,8 +18,11 @@ public:
     Movable_object(double x, double y, double x_vel, double y_vel, double min_range, double crit_range);
 
     double get_x_velocity();
+
     double get_y_velocity();
+
     void set_x_velocity(double);
+
     void set_y_velocity(double);
 
     double get_x();
@@ -39,8 +42,11 @@ public:
     int check_range(Movable_object &Obj);
 
     virtual void draw(Screen &)=0;
+
     virtual std::vector<std::pair<double, double>> collision_points()=0;
+
     virtual std::vector<std::pair<double, double>> check_collision(std::vector<std::pair<double, double>>)=0;
+
     void resolve_collision(Movable_object &);
 };
 
