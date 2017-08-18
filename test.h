@@ -10,7 +10,7 @@
 #include "Movable_object_container.h"
 
 #define time_point_variable std::chrono::time_point<std::chrono::system_clock>
-#define wait_seconds(x) std::this_thread::sleep_for(std::chrono::seconds(5));
+#define wait_seconds(x) std::this_thread::sleep_for(std::chrono::seconds(x));
 
 void standard_loop_test() {
     unsigned int x_size = 30;   //screen size
